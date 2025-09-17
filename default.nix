@@ -14,7 +14,9 @@
   modules = import ./modules; # NixOS modules
   overlays = import ./overlays; # nixpkgs overlays
 
-  example-package = pkgs.callPackage ./pkgs/example-package { };
+  spflashtool5 = pkgs.callPackage ./pkgs/spflashtool5 { };
+  spflashtool6 = pkgs.callPackage ./pkgs/spflashtool6 { };
+  spflashtool-udev-rules = pkgs.callPackage ./pkgs/spflashtool-udev-rules { };
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
   # ...
 }
