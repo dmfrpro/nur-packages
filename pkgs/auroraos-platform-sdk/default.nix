@@ -21,6 +21,14 @@ let
     sha256 = "sha256-X27z+QPNGH9zFm7p3SCxCUgVnqO6eMuqL1qSRBwr7dI=";
   };
 
+  ubu-chroot = pkgs.dockerTools.pullImage {
+    imageName = "dmfrpro/ubuntu-trusty-android-rootfs";
+    imageDigest = "sha256:9cd74477a5a2110e1f69ba40b5f1debe946e2b3b39cb1fc1ee324b69ec41812b";
+    hash = "sha256-599BGTxZmGgrogj939O68tJn5ZCNOZio+Pq09nvmSmI=";
+    finalImageName = "dmfrpro/ubuntu-trusty-android-rootfs";
+    finalImageTag = "latest";
+  };
+
   hadk-env = ./hadk-env;
   hw-profile = ./hw-profile;
   mersdkubu-profile = ./mersdkubu-profile;
@@ -52,6 +60,7 @@ stdenv.mkDerivation {
     # Use XDG_DATA_HOME or fallback to ~/.local/share
     PSDK_BASE_DIR=''${AURORA_PSDK_DATA_DIR:-''${XDG_DATA_HOME:-$HOME/.local/share}/aurora_psdk}
     PSDK_CHROOT_DIR=$PSDK_BASE_DIR/sdks/aurora_psdk
+    PSDK_UBUCHROOT_DIR=$PSDK_CHROOT_DIR/srv/mer/ubu-chroot
 
     # Initialize on first run
     if [ ! -f $PSDK_BASE_DIR/.initialized ]; then
@@ -66,6 +75,17 @@ stdenv.mkDerivation {
         --exclude='dev/*' \
         --checkpoint=.1000 \
         --directory $PSDK_CHROOT_DIR
+      
+      echo -e "\n[*] Setting up AuroraPSDK ubu-chroot in $PSDK_UBUCHROOT_DIR..."
+      sudo mkdir -p $PSDK_UBUCHROOT_DIR
+      sudo tar --numeric-owner \
+        --preserve-permissions \
+        --extract \
+        --auto-compress \
+        --file ${ubu-chroot} \
+        --exclude='dev/*' \
+        --checkpoint=.1000 \
+        --directory $PSDK_UBUCHROOT_DIR
             
       # Fix bash prompt for Nix systems
       sudo sed -i "s|#!/bin/bash|#!${pkgs.runtimeShell}|" $PSDK_CHROOT_DIR/sdk-chroot
