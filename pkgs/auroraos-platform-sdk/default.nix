@@ -7,18 +7,18 @@
 }:
 
 let
-  major = "5.1.5";
-  minor = "105";
+  major = "5.2.0";
+  minor = "45";
   postfix = "release";
   fullVersion = "${major}.${minor}";
   fullVersionPostfix = "${fullVersion}-${postfix}";
 
   repo = "https://sdk-repo.omprussia.ru/sdk/installers/${major}/${fullVersionPostfix}/AuroraPSDK";
-  chrootB = "Aurora_OS-${fullVersion}-MB2-Aurora_Platform_SDK_Chroot-x86_64.tar.bz2";
+  chrootB = "Aurora_OS-${fullVersion}-Aurora_Platform_SDK_Chroot-x86_64.tar.bz2";
 
   chroot = fetchurl {
     url = "${repo}/${chrootB}";
-    sha256 = "sha256-X27z+QPNGH9zFm7p3SCxCUgVnqO6eMuqL1qSRBwr7dI=";
+    sha256 = "sha256-v7QobO8jvrc9xFK5h8jpx2x3DvW8uyAyUHkmfTO4HyU=";
   };
 
   ubu-chroot = pkgs.dockerTools.pullImage {
@@ -113,7 +113,7 @@ stdenv.mkDerivation {
 
   meta = {
     license = lib.licenses.unfree;
-    homepage = "https://developer.auroraos.ru/downloads/p_sdk/${fullVersion}";
+    homepage = "https://developer.auroraos.ru/downloads/archive/p_sdk";
     sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
     description = "Aurora OS Platform SDK";
     platforms = [ "x86_64-linux" ];
