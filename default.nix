@@ -16,11 +16,11 @@
 
   spflashtool5 = pkgs.callPackage ./pkgs/spflashtool5 { };
   spflashtool6 = pkgs.callPackage ./pkgs/spflashtool6 { };
-  spflashtool-udev-rules = pkgs.callPackage ./pkgs/spflashtool-udev-rules { };
+  mtk-udev-rules = pkgs.callPackage ./pkgs/mtk-udev-rules { };
 
   rkflashtool = pkgs.callPackage ./pkgs/rkflashtool { };
   upgrade_tool = pkgs.callPackage ./pkgs/upgrade_tool { };
-  rkflashtool-udev-rules = pkgs.callPackage ./pkgs/rkflashtool-udev-rules { };
+  rockchip-udev-rules = pkgs.callPackage ./pkgs/rockchip-udev-rules { };
 
   auroraos-asbt-apptool = pkgs.callPackage ./pkgs/auroraos-asbt-apptool { lib = (import ./lib { inherit pkgs; }); };
   auroraos-platform-sdk = pkgs.callPackage ./pkgs/auroraos-platform-sdk { lib = (import ./lib { inherit pkgs; }); };
