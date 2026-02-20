@@ -22,7 +22,7 @@
   upgrade_tool = pkgs.callPackage ./pkgs/upgrade_tool { };
   rkflashtool-udev-rules = pkgs.callPackage ./pkgs/rkflashtool-udev-rules { };
 
-  auroraos-asbt-apptool = pkgs.callPackage ./pkgs/auroraos-asbt-apptool { };
+  auroraos-asbt-apptool = pkgs.callPackage ./pkgs/auroraos-asbt-apptool { lib = (import ./lib { inherit pkgs; }); };
   auroraos-platform-sdk = pkgs.callPackage ./pkgs/auroraos-platform-sdk { };
 
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
