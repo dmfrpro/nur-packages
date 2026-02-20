@@ -18,7 +18,7 @@
   spflashtool6 = pkgs.callPackage ./pkgs/spflashtool6 { };
   spflashtool-udev-rules = pkgs.callPackage ./pkgs/spflashtool-udev-rules { };
 
-  rkflashtool-fork = pkgs.callPackage ./pkgs/rkflashtool-fork { };
+  rkflashtool = pkgs.callPackage ./pkgs/rkflashtool { };
   upgrade_tool = pkgs.callPackage ./pkgs/upgrade_tool { };
   rkflashtool-udev-rules = pkgs.callPackage ./pkgs/rkflashtool-udev-rules { };
 
